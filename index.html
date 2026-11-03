@@ -2,1553 +2,1245 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shivansh Gaur — Portfolio</title>
-  <meta name="description" content="Shivansh Gaur — First-year student at Newton School of Technology, Python learner, and WorldQuant Consultant. Exploring the intersection of quantitative thinking and technology.">
-  <meta name="theme-color" content="#080838">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shivansh Gaur</title>
+  <meta name="description" content="Portfolio of Shivansh Gaur: student at Newton School of Technology and consultant at WorldQuant, from Nahan, Himachal Pradesh.">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Shivansh Gaur — Portfolio">
-  <meta property="og:description" content="First-year student at Newton School of Technology, Python learner, and WorldQuant Consultant.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="[ADD: URL]">
-  <meta property="og:image" content="[ADD: OG image URL]">
+  <!-- Tell CSS that JavaScript is running (used only for the mobile menu). -->
+  <script>document.documentElement.classList.add('js');</script>
 
-  <!-- Favicon: SG monogram SVG data URI -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23080838'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' font-weight='600' fill='%23FDD09D' text-anchor='middle'%3ESG%3C/text%3E%3C/svg%3E">
-
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Libre Caslon, a classic 18th-century book face.
+       display=block so the loader draws the real letters, not a fallback. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Great+Vibes&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=block">
 
   <style>
-    /* ============================================
-       RESET
-       ============================================ */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html {
-      scroll-behavior: smooth;
-      -webkit-text-size-adjust: 100%;
-      overflow-x: hidden;
-    }
-    body {
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
-    body.is-loading {
-      overflow: hidden;
-    }
-    img, svg { display: block; max-width: 100%; }
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; cursor: pointer; border: none; background: none; }
-    ul, ol { list-style: none; }
-
-    /* ============================================
-       CSS VARIABLES
-       ============================================ */
+    /* =========================================================
+       1. DESIGN TOKENS
+       Change colours and fonts here and the whole site follows.
+       Layout idea: a heritage prospectus. Left-aligned, a narrow
+       label column beside wide content, thin rules, deep olive bands.
+       ========================================================= */
     :root {
-      --navy: #080838;
-      --cream: #FDD09D;
-      --navy-deep: #040424;
-      --brass: #B08D57;
-      --font-heading: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-      --font-body: 'Inter', 'EB Garamond', Georgia, serif;
-      --font-cursive: 'Great Vibes', 'Alex Brush', 'Brush Script MT', cursive;
+      /* Colours */
+      --cream:       #F5F0E1;  /* main background */
+      --parchment:   #FAF7F0;  /* cards, panels */
+      --olive:       #3B4A2F;  /* bands, headings, buttons */
+      --olive-deep:  #252E1C;  /* darker end of olive gradients */
+      --sage:        #6B7A4B;  /* large numerals only */
+      --gold:        #B8A06A;  /* hairlines and hovers, used sparingly */
+      --gold-light:  #DCCB9C;  /* gold on dark olive (readable) */
+      --ink:         #2A2F23;  /* body text */
+      --ink-soft:    #4A5140;  /* secondary text (still AA on cream) */
+      --rule:        rgba(42, 47, 35, .22); /* thin dividing lines */
+
+      /* Fonts */
+      --font-display: "Libre Caslon Display", "Big Caslon", "Baskerville", Georgia, serif;
+      --font-body:    "Libre Caslon Text", "Baskerville", Georgia, serif;
+      --font-loader:  "Great Vibes", "Snell Roundhand", "Apple Chancery", cursive; /* script, loader monogram only */
+
+      /* Sizes and spacing */
+      --measure: 62ch;
+      --page-width: 1120px;
+      --gutter: clamp(1rem, 4vw, 2.5rem);
+      --nav-height: 64px;
     }
 
-    /* ============================================
-       BASE STYLES
-       ============================================ */
+    /* =========================================================
+       2. BASE STYLES
+       ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { color-scheme: light; -webkit-text-size-adjust: 100%; }
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+    }
+
     body {
+      margin: 0;
       font-family: var(--font-body);
-      font-weight: 400;
-      font-size: clamp(0.938rem, 0.9rem + 0.2vw, 1.063rem);
+      font-size: 1.05rem;
       line-height: 1.7;
-      color: var(--navy);
-      background: var(--cream);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    h1, h2, h3, h4 {
-      font-family: var(--font-heading);
-      font-weight: 500;
-      line-height: 1.15;
-    }
-    ::selection {
-      background: var(--brass);
-      color: var(--cream);
+      color: var(--ink);
+      background-color: var(--cream);
+      background-image: linear-gradient(180deg, var(--parchment) 0%, var(--cream) 60%);
+      overflow-x: hidden;
     }
 
-    /* ============================================
-       SKIP LINK (ACCESSIBILITY)
-       ============================================ */
-    .skip-link {
-      position: fixed;
-      top: -100%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--brass);
-      color: var(--navy);
-      padding: 0.75rem 1.5rem;
-      font-weight: 600;
-      z-index: 10001;
-      border-radius: 0 0 4px 4px;
-      transition: top 0.2s ease;
-    }
-    .skip-link:focus {
-      top: 0;
-      outline: 2px solid var(--cream);
-      outline-offset: 2px;
-    }
-
-    /* ============================================
-       PAPER GRAIN TEXTURE OVERLAY
-       ============================================ */
-    .grain-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 9000;
-      opacity: 0.03;
-    }
-
-    /* ============================================
-       CUSTOM CURSOR FOLLOWER
-       ============================================ */
-    .cursor-follower {
-      position: fixed;
-      width: 12px;
-      height: 12px;
-      background: var(--brass);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.7;
-      transform: translate(-50%, -50%) scale(1);
-      transition: transform 0.2s ease, opacity 0.2s ease;
-      display: none;
-    }
-    .cursor-follower.is-active {
-      display: block;
-    }
-    .cursor-follower.is-hovering {
-      transform: translate(-50%, -50%) scale(2.5);
-      opacity: 0.35;
-    }
-
-    /* ============================================
-       PRELOADER
-       ============================================ */
-    .preloader {
+    /* Very subtle paper grain, drawn with an SVG noise filter (no image files). */
+    body::after {
+      content: "";
       position: fixed;
       inset: 0;
-      background: var(--navy-deep);
-      z-index: 10000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
-    }
-    .preloader.is-done {
-      transform: translateY(-100%);
       pointer-events: none;
-      visibility: hidden;
-    }
-    .preloader-sg {
-      width: 180px;
-      height: 110px;
-      overflow: visible;
-    }
-    .preloader-sg text {
-      font-family: var(--font-cursive);
-      font-size: 84px;
-      font-weight: 400;
-      font-style: italic;
-      fill: transparent;
-      stroke: var(--cream);
-      stroke-width: 1.6;
-      stroke-dasharray: 450;
-      stroke-dashoffset: 450;
-      animation: sgDraw 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-    @keyframes sgDraw {
-      0%   { stroke-dashoffset: 450; fill: transparent; }
-      65%  { stroke-dashoffset: 0;   fill: transparent; }
-      100% { stroke-dashoffset: 0;   fill: var(--cream); }
+      z-index: 60;
+      opacity: .06;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.23 0 0 0 0 0.25 0 0 0 0 0.17 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    /* ============================================
-       CONTAINER
-       ============================================ */
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      color: var(--olive);
+      line-height: 1.1;
+      margin: 0;
+      text-wrap: balance;
+    }
+    p { margin: 0; }
+    a { color: var(--olive); text-underline-offset: .2em; text-decoration-thickness: 1px; }
+
+    /* Visible keyboard focus everywhere */
+    :focus-visible { outline: 2px solid var(--olive); outline-offset: 3px; }
+
+    /* Hidden visually but still read by screen readers */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+
+    .skip-link {
+      position: absolute; left: 1rem; top: -100px; z-index: 200;
+      background: var(--olive); color: var(--cream); padding: .5rem 1rem;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* Small tracked capitals for labels, like engraved stationery */
+    .label {
+      font-family: var(--font-body);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--olive);
+    }
+
     .container {
       width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
+      max-width: var(--page-width);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
     }
 
-    /* ============================================
-       NAVIGATION
-       ============================================ */
+    /* =========================================================
+       3. LOADING SCREEN
+       The loader waits until the visitor clicks, taps or presses a key.
+       Safety net: if JavaScript is not running, CSS lifts it by itself.
+       Timeline: S (0.3s) → G (0.9s) → fill (1.8s)
+       → shimmer + rule (2.1s) → name (2.4s) → "press any key" hint (2.9s).
+       ========================================================= */
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      background: linear-gradient(160deg, var(--olive) 0%, var(--olive-deep) 100%);
+    }
+    /* Without JS, nobody could press to enter, so lift it automatically */
+    html:not(.js) .loader { animation: curtainUp .8s cubic-bezier(.76, 0, .24, 1) 3.3s forwards; }
+
+    /* Stop the page behind from scrolling while the loader is showing */
+    html.is-loading { overflow: hidden; }
+    /* Soft vignette */
+    .loader::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(10, 14, 8, .55) 100%);
+    }
+
+    .loader-inner {
+      position: relative;
+      display: grid;
+      justify-items: center;
+      gap: .4rem;
+      width: min(320px, 72vw);
+    }
+    .loader-mark { width: 100%; height: auto; overflow: visible; }
+
+    /* Each letter is outlined like a pen stroke, then filled */
+    .sg-letter {
+      font-family: var(--font-loader);
+      font-size: 150px;
+      fill: url(#goldFill);
+      fill-opacity: 0;
+      stroke: var(--gold-light);
+      stroke-width: 1.2;
+      stroke-linejoin: round;
+      stroke-dasharray: 700;
+      stroke-dashoffset: 700;
+      animation:
+        penDraw 1.3s ease-in-out .3s forwards,
+        inkFill .6s ease 1.8s forwards;
+    }
+    .sg-letter--g { animation-delay: .9s, 1.8s; }
+
+    /* Gold shimmer: a bright band slides across, clipped to the letters */
+    .shine-band {
+      transform: translateX(-160px);
+      animation: shimmer .9s ease-in-out 2.1s forwards;
+    }
+
+    /* Rule that extends beneath the monogram */
+    .loader-rule {
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      animation: ruleGrow .7s ease-out 2.1s forwards;
+    }
+
+    .loader-name {
+      font-family: var(--font-body);
+      font-size: clamp(.72rem, 2.6vw, .85rem);
+      font-weight: 700;
+      letter-spacing: .5em;
+      text-indent: .5em; /* keeps tracked text centred */
+      color: var(--cream);
+      opacity: 0;
+      margin-top: .6rem;
+      animation: nameIn .7s ease 2.4s forwards;
+    }
+
+    .loader-hint {
+      position: absolute;
+      bottom: clamp(2.2rem, 6vw, 3.4rem);
+      left: 0; right: 0;
+      text-align: center;
+      font-size: .68rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      opacity: 0;
+      /* appears once the monogram is finished, then breathes gently */
+      animation: hintIn .8s ease 2.9s forwards, hintPulse 2.4s ease-in-out 3.7s infinite;
+    }
+    @keyframes hintIn    { to { opacity: .8; } }
+    @keyframes hintPulse { 0%, 100% { opacity: .8; } 50% { opacity: .35; } }
+
+    /* Added by JS when the visitor clicks or presses a key */
+    .loader.is-skipped { animation: curtainUpFast .6s cubic-bezier(.76, 0, .24, 1) forwards; }
+
+    @keyframes penDraw  { to { stroke-dashoffset: 0; } }
+    @keyframes inkFill  { to { fill-opacity: 1; stroke-opacity: .35; } }
+    @keyframes shimmer  { to { transform: translateX(460px); } }
+    @keyframes ruleGrow { to { width: 70%; } }
+    @keyframes nameIn   { to { opacity: 1; letter-spacing: .38em; text-indent: .38em; } }
+    @keyframes curtainUp     { to { transform: translateY(-100%); visibility: hidden; } }
+    @keyframes curtainUpFast { to { transform: translateY(-100%); visibility: hidden; } }
+    @keyframes fadeAway      { to { opacity: 0; visibility: hidden; } }
+    @keyframes fadeAwayFast  { to { opacity: 0; visibility: hidden; } }
+
+    /* Reduced motion: show the finished monogram briefly, then fade out */
+    @media (prefers-reduced-motion: reduce) {
+      .sg-letter { animation: none; stroke-dashoffset: 0; fill-opacity: 1; stroke-opacity: .35; }
+      .shine-band { display: none; }
+      .loader-rule { animation: none; width: 70%; }
+      .loader-name { animation: none; opacity: 1; letter-spacing: .38em; text-indent: .38em; }
+      html:not(.js) .loader { animation: fadeAway .4s ease 1.2s forwards; }
+      .loader-hint { animation: none; opacity: .8; }
+      .loader.is-skipped { animation: fadeAwayFast .2s ease forwards; }
+    }
+
+    /* =========================================================
+       4. SIDE RAILS (wide screens only)
+       A thin line in each empty margin that fills as you scroll,
+       with a vertical caption. Pure CSS; hidden on smaller screens.
+       ========================================================= */
+    .side-rail { display: none; }
+    @media (min-width: 1300px) {
+      .side-rail {
+        position: fixed;
+        top: calc(var(--nav-height) + 40px);
+        bottom: 40px;
+        z-index: 5;
+        width: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        pointer-events: none;
+      }
+      .side-rail--left  { left:  calc((100vw - var(--page-width)) / 4 - 10px); }
+      .side-rail--right { right: calc((100vw - var(--page-width)) / 4 - 10px); }
+    }
+    .rail-line {
+      position: relative;
+      flex: 1;
+      width: 1px;
+      background: rgba(184, 160, 106, .4);
+      overflow: hidden;
+    }
+    .rail-fill {
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform-origin: top;
+      transform: scaleY(0);
+    }
+    @supports (animation-timeline: scroll()) {
+      .rail-fill { animation: railFill linear both; animation-timeline: scroll(root); }
+    }
+    .rail-caption {
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      writing-mode: vertical-rl;
+    }
+    .side-rail--left .rail-caption { transform: rotate(180deg); }
+    @keyframes railFill { to { transform: scaleY(1); } }
+
+    /* =========================================================
+       5. NAVBAR
+       ========================================================= */
     .nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 72px;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      transition: background 0.4s ease, height 0.3s ease, box-shadow 0.3s ease;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      background: rgba(245, 240, 225, .9);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
     }
     .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-    .nav-logo svg {
-      width: 40px;
-      height: 28px;
-    }
-    .nav-logo text {
-      font-family: var(--font-heading);
-      font-size: 28px;
-      font-weight: 600;
-      fill: var(--cream);
-      transition: fill 0.3s ease;
-    }
-    .nav-scrolled .nav-logo text {
-      fill: var(--cream);
-    }
-    .nav-scrolled {
-      height: 60px;
-      background: rgba(8, 8, 56, 0.9);
-      -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 1px 0 rgba(176, 141, 87, 0.15);
-    }
-    .nav-links {
-      display: none;
-      gap: 2rem;
-      align-items: center;
-    }
-    .nav-link {
-      font-family: var(--font-body);
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--cream);
-      position: relative;
-      padding: 0.25rem 0;
-    }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: var(--brass);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
-    }
-    .nav-link:hover::after,
-    .nav-link.is-active::after {
-      transform: scaleX(1);
-    }
-    .nav-link:focus-visible {
-      outline: 2px solid var(--brass);
-      outline-offset: 4px;
-    }
-
-    /* Hamburger */
-    .hamburger {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      width: 28px;
-      height: 28px;
-      z-index: 1001;
-      cursor: pointer;
-      background: none;
-      border: none;
-    }
-    .hamburger span {
-      display: block;
-      width: 100%;
-      height: 1.5px;
-      background: var(--cream);
-      border-radius: 1px;
-      transition: transform 0.35s ease, opacity 0.25s ease;
-      transform-origin: center;
-    }
-    .hamburger[aria-expanded="true"] span:nth-child(1) {
-      transform: translateY(6.5px) rotate(45deg);
-    }
-    .hamburger[aria-expanded="true"] span:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger[aria-expanded="true"] span:nth-child(3) {
-      transform: translateY(-6.5px) rotate(-45deg);
-    }
-    .hamburger:focus-visible {
-      outline: 2px solid var(--brass);
-      outline-offset: 4px;
-    }
-
-    /* Mobile Menu Panel */
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: min(85vw, 360px);
-      height: 100%;
-      background: var(--navy-deep);
-      z-index: 999;
-      transform: translateX(100%);
-      transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 3rem;
-    }
-    .mobile-menu.is-open {
-      transform: translateX(0);
-    }
-    .mobile-menu-link {
-      display: block;
-      font-family: var(--font-heading);
-      font-size: clamp(1.5rem, 5vw, 2.5rem);
-      font-weight: 400;
-      color: var(--cream);
-      padding: 0.75rem 0;
-      border-bottom: 1px solid rgba(176, 141, 87, 0.15);
-      transition: color 0.3s ease;
-    }
-    .mobile-menu-link:hover,
-    .mobile-menu-link:focus {
-      color: var(--brass);
-    }
-    .mobile-menu-link:focus-visible {
-      outline: 2px solid var(--brass);
-      outline-offset: 4px;
-    }
-    .mobile-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(4, 4, 36, 0.65);
-      z-index: 998;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s ease;
-    }
-    .mobile-overlay.is-open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    body.menu-open {
-      overflow: hidden;
-    }
-
-    /* ============================================
-       SECTION COMMONS
-       ============================================ */
-    .section {
-      position: relative;
-      padding: clamp(4rem, 8vw, 8rem) 0;
-    }
-    .section--navy {
-      background: var(--navy);
-      color: var(--cream);
-    }
-    .section--cream {
-      background: var(--cream);
-      color: var(--navy);
-    }
-    .section--navy-deep {
-      background: var(--navy-deep);
-      color: var(--cream);
-    }
-    /* Gradient transitions between sections */
-    .section--navy::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 80px;
-      background: linear-gradient(to bottom, var(--navy), var(--cream));
-      pointer-events: none;
-    }
-    .section--cream::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 80px;
-      background: linear-gradient(to bottom, var(--cream), var(--navy));
-      pointer-events: none;
-    }
-    /* Override last cream before navy-deep */
-    .section--cream-to-deep::after {
-      background: linear-gradient(to bottom, var(--cream), var(--navy));
-    }
-    /* Override last navy before cream */
-    .section--contact::after {
-      background: linear-gradient(to bottom, var(--navy), var(--navy-deep));
-    }
-    .section-label {
-      font-family: var(--font-body);
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--brass);
-      margin-bottom: 2.5rem;
-      line-height: 1.5;
-    }
-    .brass-divider {
-      width: 60px;
-      height: 1px;
-      background: var(--brass);
-      opacity: 0.4;
-      margin: 3rem auto 0;
-    }
-
-    /* ============================================
-       HERO SECTION
-       ============================================ */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding-top: 72px;
-      overflow: hidden;
-    }
-    .hero::after {
-      height: 80px;
-    }
-    /* Decorative parallax SG */
-    .hero-parallax {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .hero-parallax text {
-      font-family: var(--font-heading);
-      font-size: 280px;
-      font-weight: 700;
-      fill: none;
-      stroke: rgba(253, 208, 157, 0.04);
-      stroke-width: 1;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
-    .hero-heading {
-      font-size: clamp(3rem, 8vw, 7rem);
-      font-weight: 500;
-      color: var(--cream);
-      line-height: 1.05;
-      margin-bottom: 1.5rem;
-    }
-    .hero-line {
-      display: block;
-      overflow: hidden;
-    }
-    .hero-line-inner {
-      display: inline-block;
-      transform: translateY(105%);
-      transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .hero-line-inner.is-visible {
-      transform: translateY(0);
-    }
-    .hero-tagline {
-      font-family: var(--font-body);
-      font-size: clamp(0.875rem, 1.5vw, 1.125rem);
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      color: rgba(253, 208, 157, 0.7);
-      min-height: 1.5em;
-    }
-    .hero-tagline .cursor {
-      display: inline-block;
-      width: 1px;
-      height: 1em;
-      background: var(--brass);
-      margin-left: 2px;
-      vertical-align: text-bottom;
-      animation: blink 0.9s steps(1) infinite;
-    }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50%      { opacity: 0; }
-    }
-
-    /* Scroll cue */
-    .scroll-cue {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      animation: scrollBounce 2.5s ease-in-out infinite;
-    }
-    .scroll-cue svg {
-      width: 20px;
-      height: 20px;
-      stroke: rgba(253, 208, 157, 0.5);
-      stroke-width: 1.5;
-      fill: none;
-    }
-    @keyframes scrollBounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
-      50%      { transform: translateX(-50%) translateY(8px); opacity: 1; }
-    }
-
-    /* ============================================
-       ABOUT SECTION
-       ============================================ */
-    .about-text {
-      max-width: 700px;
-      margin: 0 auto;
-      font-size: clamp(0.95rem, 1vw, 1.1rem);
-      line-height: 1.85;
-      color: var(--navy);
-    }
-
-    /* ============================================
-       JOURNEY / TIMELINE SECTION
-       ============================================ */
-    .timeline {
-      position: relative;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem 0;
-    }
-    .timeline-line {
-      position: absolute;
-      top: 0;
-      left: 20px;
-      width: 1px;
-      height: 100%;
-      background: rgba(176, 141, 87, 0.2);
-    }
-    .timeline-line-progress {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--brass);
-      transform: scaleY(0);
-      transform-origin: top;
-      transition: none;
-    }
-    .timeline-item {
-      position: relative;
-      padding-left: 56px;
-      margin-bottom: 3.5rem;
-    }
-    .timeline-item:last-child {
-      margin-bottom: 0;
-    }
-    .timeline-dot {
-      position: absolute;
-      left: 13px;
-      top: 0.35rem;
-      width: 15px;
-      height: 15px;
-      border: 2px solid var(--brass);
-      border-radius: 50%;
-      background: var(--navy);
-      transform: scale(0);
-      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .timeline-dot.is-visible {
-      transform: scale(1);
-    }
-    .timeline-card {
-      border: 1px solid rgba(176, 141, 87, 0.2);
-      padding: 1.5rem;
-      border-radius: 2px;
-    }
-    .timeline-title {
-      font-family: var(--font-heading);
-      font-size: clamp(1.2rem, 2vw, 1.5rem);
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-      color: var(--cream);
-    }
-    .timeline-institution {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--brass);
-      margin-bottom: 0.5rem;
-    }
-    .timeline-desc {
-      font-size: 0.9rem;
-      line-height: 1.7;
-      color: rgba(253, 208, 157, 0.75);
-      margin-bottom: 0.5rem;
-    }
-    .timeline-date {
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(253, 208, 157, 0.45);
-    }
-
-    /* ============================================
-       SKILLS SECTION
-       ============================================ */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .skill-card {
-      border: 1px solid rgba(176, 141, 87, 0.25);
-      padding: clamp(1.5rem, 3vw, 2.5rem);
-      border-radius: 2px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .skill-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 30px rgba(176, 141, 87, 0.15);
-    }
-    .skill-card-title {
-      font-family: var(--font-heading);
-      font-size: clamp(1.5rem, 2.5vw, 2rem);
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-      color: var(--navy);
-    }
-    .skill-card-status {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--brass);
-      margin-bottom: 1rem;
-    }
-    .skill-card-desc {
-      font-size: 0.925rem;
-      line-height: 1.75;
-      color: var(--navy);
-      opacity: 0.8;
-    }
-
-    /* ============================================
-       PROJECTS SECTION
-       ============================================ */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .project-card {
-      border: 1px solid rgba(176, 141, 87, 0.2);
-      padding: clamp(1.5rem, 3vw, 2.5rem);
-      border-radius: 2px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 30px rgba(176, 141, 87, 0.15);
-    }
-    .project-card--placeholder {
-      border-style: dashed;
-      border-color: rgba(176, 141, 87, 0.2);
-    }
-    .project-card-title {
-      font-family: var(--font-heading);
-      font-size: clamp(1.3rem, 2vw, 1.6rem);
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-      color: var(--cream);
-    }
-    .project-card-desc {
-      font-size: 0.9rem;
-      line-height: 1.75;
-      color: rgba(253, 208, 157, 0.75);
-      margin-bottom: 1.25rem;
-    }
-    .project-card-link {
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--brass);
+      gap: 1rem;
+      min-height: var(--nav-height);
+    }
+    /* Wordmark: small serif monogram + name in tracked capitals */
+    .nav-brand {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      transition: opacity 0.3s ease;
+      gap: .75rem;
+      text-decoration: none;
+      color: var(--olive);
     }
-    .project-card-link:hover {
-      opacity: 0.7;
-    }
-    .project-card-link:focus-visible {
-      outline: 2px solid var(--brass);
-      outline-offset: 4px;
-    }
-    .project-card-link svg {
-      width: 14px;
-      height: 14px;
-      stroke: var(--brass);
-      stroke-width: 2;
-      fill: none;
-    }
-    .project-card--placeholder .project-card-title {
-      color: rgba(253, 208, 157, 0.35);
-    }
-    .project-card--placeholder .project-card-desc {
-      color: rgba(253, 208, 157, 0.3);
-    }
-
-    /* ============================================
-       EXPERIENCE SECTION
-       ============================================ */
-    .experience-card {
-      border: 1px solid rgba(176, 141, 87, 0.25);
-      padding: clamp(1.5rem, 3vw, 2.5rem);
-      border-radius: 2px;
-      max-width: 700px;
-      margin: 0 auto;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .experience-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 30px rgba(176, 141, 87, 0.15);
-    }
-    .experience-title {
-      font-family: var(--font-heading);
-      font-size: clamp(1.5rem, 2.5vw, 2rem);
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-      color: var(--navy);
-    }
-    .experience-org {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--brass);
-      margin-bottom: 0.25rem;
-    }
-    .experience-date {
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--navy);
-      opacity: 0.5;
-      margin-bottom: 1rem;
-    }
-    .experience-desc {
-      font-size: 0.925rem;
-      line-height: 1.75;
-      color: var(--navy);
-      opacity: 0.8;
-    }
-
-    /* ============================================
-       CONTACT SECTION
-       ============================================ */
-    .contact-heading {
-      font-family: var(--font-heading);
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 500;
+    .nav-brand .mono {
+      display: inline-grid;
+      place-items: center;
+      width: 34px; height: 34px;
+      background: var(--olive);
       color: var(--cream);
-      margin-bottom: 1rem;
-    }
-    .contact-text {
+      font-family: var(--font-display);
       font-size: 1rem;
-      color: rgba(253, 208, 157, 0.7);
-      margin-bottom: 2rem;
-      max-width: 500px;
+      letter-spacing: .02em;
     }
-    .contact-btn {
-      display: inline-block;
-      position: relative;
-      overflow: hidden;
-      padding: 0.85rem 2.5rem;
-      border: 1px solid var(--brass);
-      font-family: var(--font-body);
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.15em;
+    .nav-brand .name {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .26em;
       text-transform: uppercase;
-      color: var(--cream);
-      transition: color 0.4s ease;
-      margin-bottom: 2.5rem;
     }
-    .contact-btn::before {
-      content: '';
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .25rem 1.75rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      position: relative;
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--olive);
+      text-decoration: none;
+      padding-block: .4rem;
+    }
+    /* Gold underline that grows on hover */
+    .nav-links a::after {
+      content: "";
       position: absolute;
-      inset: 0;
-      background: var(--brass);
+      left: 0; right: .2em; bottom: .15rem;
+      height: 1px;
+      background: var(--gold);
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.4s ease;
-      z-index: 0;
+      transition: transform .3s ease;
     }
-    .contact-btn:hover::before {
-      transform: scaleX(1);
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after { transform: scaleX(1); }
+
+    .nav-toggle { display: none; }
+
+    @media (max-width: 860px) {
+      .js .nav-toggle {
+        display: inline-flex;
+        background: none;
+        border: 1px solid var(--olive);
+        color: var(--olive);
+        font: 700 .72rem/1 var(--font-body);
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        padding: .6rem .9rem;
+        cursor: pointer;
+      }
+      .js .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: var(--parchment);
+        border-bottom: 1px solid var(--rule);
+        padding: .5rem var(--gutter) 1rem;
+      }
+      .js .nav-links.is-open { display: flex; }
+      .js .nav-links a { display: block; padding-block: .8rem; border-bottom: 1px solid var(--rule); }
+      .js .nav-links a::after { display: none; }
+      html:not(.js) .nav-links { gap: .25rem .9rem; justify-content: flex-end; }
+      html:not(.js) .nav-links a { font-size: .66rem; letter-spacing: .12em; }
     }
-    .contact-btn:hover {
-      color: var(--navy);
+    @media (max-width: 420px) {
+      .nav-brand .name { display: none; }
     }
-    .contact-btn span {
-      position: relative;
-      z-index: 1;
+
+    /* =========================================================
+       6. SHARED SECTION LAYOUT
+       Narrow label column (numeral + title) beside wide content.
+       ========================================================= */
+    main { padding-top: var(--nav-height); }
+    section { scroll-margin-top: var(--nav-height); }
+
+    .section { padding-block: clamp(3.5rem, 8vw, 6rem); }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(170px, 240px) minmax(0, 1fr);
+      gap: 1.5rem clamp(2rem, 5vw, 4rem);
+      border-top: 1px solid var(--rule);
+      padding-top: 1.75rem;
     }
-    .contact-btn:focus-visible {
-      outline: 2px solid var(--brass);
-      outline-offset: 4px;
+    .section-label { display: grid; gap: .5rem; align-content: start; }
+    .section-num {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      line-height: 1;
+      color: var(--sage);
     }
-    .social-links {
-      display: flex;
-      gap: 1.5rem;
+    .section-label h2 {
+      font-family: var(--font-body);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--olive);
+    }
+    .section-body { display: grid; gap: 1.5rem; min-width: 0; }
+
+    /* A large serif statement that opens a section */
+    .lede {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+      line-height: 1.25;
+      color: var(--olive);
+      max-width: 26ch;
+    }
+
+    @media (max-width: 760px) {
+      .section-grid { grid-template-columns: 1fr; }
+      .section-label { grid-template-columns: auto 1fr; align-items: baseline; gap: 1rem; }
+    }
+
+    /* Gentle fade-up while scrolling. CSS scroll timelines only, so
+       content is never hidden: browsers without support just show it. */
+    @supports (animation-timeline: view()) {
+      @media (prefers-reduced-motion: no-preference) {
+        .reveal {
+          animation: fadeUp linear both;
+          animation-timeline: view();
+          animation-range: entry 0% entry 55%;
+        }
+      }
+    }
+    @keyframes fadeUp {
+      from { opacity: .35; transform: translateY(18px); }
+      to   { opacity: 1;   transform: none; }
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
       align-items: center;
+      gap: .7rem;
+      padding: .95rem 1.7rem;
+      font: 700 .74rem/1 var(--font-body);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--cream);
+      background: linear-gradient(160deg, var(--olive) 0%, var(--olive-deep) 100%);
+      border: 1px solid var(--olive-deep);
+      cursor: pointer;
+      transition: background-color .3s ease, color .3s ease, border-color .3s ease;
     }
-    .social-link {
-      display: flex;
+    .btn:hover { border-color: var(--gold); }
+    .btn .arrow { transition: transform .3s ease; }
+    .btn:hover .arrow { transform: translateX(4px); }
+
+    /* Cream button for use on olive backgrounds */
+    .btn--light {
+      background: var(--cream);
+      color: var(--olive);
+      border-color: var(--cream);
+    }
+    .btn--light:hover { background: transparent; color: var(--cream); border-color: var(--gold-light); }
+
+    /* =========================================================
+       7. HERO (deep olive band)
+       ========================================================= */
+    .hero {
+      background:
+        radial-gradient(ellipse 55% 80% at 85% 40%, rgba(107, 122, 75, .35), transparent 70%),
+        linear-gradient(160deg, var(--olive) 0%, var(--olive-deep) 100%);
+      color: var(--cream);
+      border-bottom: 1px solid var(--gold);
+    }
+    .hero :focus-visible { outline-color: var(--cream); }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
       align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      transition: transform 0.3s ease;
+      gap: clamp(2rem, 6vw, 5rem);
+      padding-block: clamp(3.5rem, 9vw, 6.5rem) clamp(2.5rem, 6vw, 4rem);
     }
-    .social-link svg {
-      width: 22px;
-      height: 22px;
-      fill: var(--cream);
-      transition: fill 0.3s ease;
+    .hero-text { display: grid; gap: 1.4rem; justify-items: start; }
+    .hero .label { color: var(--gold-light); }
+    .hero h1 {
+      font-size: clamp(3rem, 9vw, 6.2rem);
+      line-height: .98;
+      color: var(--cream);
+      letter-spacing: -.01em;
     }
-    .social-link:hover svg {
-      fill: var(--brass);
+    .hero-rule { width: 80px; height: 1px; background: var(--gold); border: 0; margin: 0; }
+    .hero-tagline {
+      font-style: italic;
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      color: rgba(245, 240, 225, .88);
+      max-width: 36ch;
     }
-    .social-link:hover {
-      transform: translateY(-2px);
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem 1.75rem; align-items: center; margin-top: .4rem; }
+    .hero-link {
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: .2rem;
     }
-    .social-link:focus-visible {
-      outline: 2px solid var(--brass);
-      outline-offset: 4px;
-    }
+    .hero-link:hover { color: var(--gold-light); }
 
-    /* ============================================
-       FOOTER
-       ============================================ */
-    .footer {
-      background: var(--navy-deep);
-      color: rgba(253, 208, 157, 0.45);
-      text-align: center;
-      padding: 2rem 0;
-      font-size: 0.8rem;
-      letter-spacing: 0.05em;
-      border-top: 1px solid rgba(176, 141, 87, 0.15);
+    .hero-crest { width: 100%; max-width: 250px; justify-self: center; }
+    .hero-crest svg { display: block; width: 100%; height: auto; }
+
+    /* Fact strip: four quick facts, like the cover of an annual report */
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-top: 1px solid rgba(220, 203, 156, .45);
+      margin: 0;
+      padding-block: 1.5rem 2rem;
+      gap: 1.25rem;
     }
+    .facts div { display: grid; gap: .25rem; align-content: start; padding-right: 1rem; }
+    .facts div + div { border-left: 1px solid rgba(220, 203, 156, .25); padding-left: 1.25rem; }
+    .facts dt { color: var(--gold-light); }
+    .facts dd { margin: 0; font-family: var(--font-display); font-size: 1.15rem; line-height: 1.3; color: var(--cream); }
 
-    /* ============================================
-       SCROLL REVEAL
-       ============================================ */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-crest { max-width: 150px; justify-self: start; grid-row: 1; }
+      .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .facts div:nth-child(3) { border-left: 0; padding-left: 0; }
     }
-    .reveal.revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-children > *:nth-child(1)  { transition-delay: 0s;   }
-    .reveal-children > *:nth-child(2)  { transition-delay: 0.1s; }
-    .reveal-children > *:nth-child(3)  { transition-delay: 0.2s; }
-    .reveal-children > *:nth-child(4)  { transition-delay: 0.3s; }
-    .reveal-children > *:nth-child(5)  { transition-delay: 0.4s; }
-    .reveal-children > *:nth-child(6)  { transition-delay: 0.5s; }
-
-    /* ============================================
-       RESPONSIVE — TABLET (768px+)
-       ============================================ */
-    @media (min-width: 768px) {
-      .container { padding: 0 40px; }
-
-      .skills-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-      .projects-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      /* Timeline — still left-aligned on tablet */
-      .timeline-line { left: 20px; }
+    @media (max-width: 440px) {
+      .facts { grid-template-columns: 1fr; }
+      .facts div + div { border-left: 0; padding-left: 0; border-top: 1px solid rgba(220, 203, 156, .25); padding-top: 1rem; }
     }
 
-    /* ============================================
-       RESPONSIVE — DESKTOP (1024px+)
-       ============================================ */
-    @media (min-width: 1024px) {
-      .container { padding: 0 60px; }
-
-      .hamburger { display: none; }
-      .nav-links { display: flex; }
-
-      /* Timeline alternating layout */
-      .timeline {
-        max-width: 900px;
-      }
-      .timeline-line {
-        left: 50%;
-        transform: translateX(-50%);
-      }
-      .timeline-item {
-        width: 50%;
-        padding-left: 0;
-      }
-      .timeline-item:nth-child(odd) {
-        margin-left: 0;
-        padding-right: 48px;
-        text-align: right;
-      }
-      .timeline-item:nth-child(even) {
-        margin-left: 50%;
-        padding-left: 48px;
-        text-align: left;
-      }
-      .timeline-dot {
-        left: auto;
-      }
-      .timeline-item:nth-child(odd) .timeline-dot {
-        right: -8px;
-        left: auto;
-      }
-      .timeline-item:nth-child(even) .timeline-dot {
-        left: -8px;
-      }
-
-      .projects-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
+    /* =========================================================
+       8. ABOUT
+       ========================================================= */
+    .prose { display: grid; gap: 1.1rem; max-width: var(--measure); }
+    /* Drop cap on the first paragraph, as in an old book */
+    .prose p:first-child::first-letter {
+      float: left;
+      font-family: var(--font-display);
+      font-size: 4.2rem;
+      line-height: .8;
+      color: var(--olive);
+      padding: .4rem .55rem 0 0;
     }
 
-    /* ============================================
-       RESPONSIVE — LARGE (1440px+)
-       ============================================ */
-    @media (min-width: 1440px) {
-      .container { max-width: 1200px; }
-      .section { padding: clamp(6rem, 10vw, 10rem) 0; }
+    /* =========================================================
+       9. EDUCATION (ledger table)
+       ========================================================= */
+    .ledger {
+      width: 100%;
+      border-collapse: collapse;
+      font-variant-numeric: tabular-nums;
+    }
+    .ledger th {
+      text-align: left;
+      padding: .7rem 1rem .7rem 0;
+      border-bottom: 1px solid var(--olive);
+    }
+    .ledger td {
+      padding: 1.15rem 1rem 1.15rem 0;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: baseline;
+    }
+    .ledger .col-no {
+      width: 3.5rem;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: var(--sage);
+    }
+    .ledger th.col-no { font-family: var(--font-body); font-size: .72rem; color: var(--olive); }
+    .ledger .col-inst { font-family: var(--font-display); font-size: 1.3rem; color: var(--olive); line-height: 1.3; }
+    .ledger .col-note { color: var(--ink-soft); font-style: italic; }
+    .ledger .col-std { text-align: right; padding-right: 0; white-space: nowrap; font-weight: 700; color: var(--olive); }
+    .ledger tr.is-current td { background: rgba(59, 74, 47, .06); }
+    .tag {
+      display: inline-block;
+      margin-left: .5rem;
+      padding: .15rem .5rem;
+      background: var(--olive);
+      color: var(--cream);
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      vertical-align: middle;
     }
 
-    /* ============================================
-       FOCUS STATES (ACCESSIBILITY)
-       ============================================ */
-    :focus-visible {
-      outline: 2px solid var(--brass);
-      outline-offset: 3px;
+    /* On small screens each row becomes a stacked entry */
+    @media (max-width: 600px) {
+      .ledger thead { display: none; }
+      .ledger, .ledger tbody, .ledger tr, .ledger td { display: block; width: 100%; }
+      .ledger tr { padding: 1rem 0; border-bottom: 1px solid var(--rule); }
+      .ledger td { border: 0; padding: .1rem 0; text-align: left; }
+      .ledger .col-std { text-align: left; }
+      .ledger tr.is-current { background: rgba(59, 74, 47, .06); padding-inline: .75rem; }
+      .ledger tr.is-current td { background: none; }
     }
 
-    /* ============================================
-       REDUCED MOTION
-       ============================================ */
+    /* =========================================================
+       10. EXPERIENCE (olive band with a ledger-style record)
+       ========================================================= */
+    .section--olive {
+      background: linear-gradient(160deg, var(--olive) 0%, var(--olive-deep) 100%);
+      color: var(--cream);
+    }
+    .section--olive .section-grid { border-top-color: rgba(220, 203, 156, .4); }
+    .section--olive .section-num { color: var(--gold-light); }
+    .section--olive .section-label h2 { color: var(--cream); }
+    .section--olive :focus-visible { outline-color: var(--cream); }
+
+    .record { display: grid; gap: 1.5rem; }
+    .record-firm {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      line-height: 1;
+      color: var(--cream);
+    }
+    .record-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin: 0;
+      border-top: 1px solid rgba(220, 203, 156, .4);
+      border-bottom: 1px solid rgba(220, 203, 156, .4);
+      padding-block: 1.1rem;
+    }
+    .record-list dt { color: var(--gold-light); }
+    .record-list dd { margin: .2rem 0 0; font-family: var(--font-display); font-size: 1.25rem; }
+    .record-note { color: rgba(245, 240, 225, .85); font-style: italic; max-width: var(--measure); }
+    @media (max-width: 520px) {
+      .record-list { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* =========================================================
+       11. SKILLS
+       ========================================================= */
+    .skill-rows { display: grid; border-top: 1px solid var(--olive); }
+    .skill-row {
+      display: grid;
+      grid-template-columns: minmax(120px, 180px) minmax(0, 1fr) auto;
+      gap: .75rem 1.5rem;
+      align-items: baseline;
+      padding-block: 1.3rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .skill-row h3 { font-size: 1.8rem; }
+    .skill-row .when { color: var(--ink-soft); font-style: italic; text-align: right; }
+    .badges { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; margin: 0; padding: 0; }
+    .badge {
+      padding: .4rem .75rem;
+      border: 1px solid var(--olive);
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--olive);
+      background: var(--parchment);
+    }
+    .badge--progress { border-style: dashed; }
+    @media (max-width: 640px) {
+      .skill-row { grid-template-columns: 1fr; }
+      .skill-row .when { text-align: left; }
+    }
+
+    /* =========================================================
+       12. PROJECTS
+       ========================================================= */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: 1.25rem;
+    }
+    .card {
+      display: grid;
+      gap: .8rem;
+      align-content: start;
+      padding: 1.75rem;
+      background: var(--parchment);
+      border: 1px solid var(--rule);
+      border-top: 3px solid var(--olive);
+      transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+    }
+    .card:hover,
+    .card:focus-within {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+      border-top-color: var(--olive);
+      box-shadow: 0 18px 30px -22px rgba(42, 47, 35, .5);
+    }
+    .card h3 { font-size: 1.7rem; }
+    .card p { color: var(--ink-soft); }
+    .card--soon { background: transparent; border-style: dashed; }
+    .card--soon h3 { font-style: italic; }
+
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-      .reveal { opacity: 1; transform: none; }
-      .preloader { display: none; }
-      .cursor-follower { display: none; }
-      .hero-line-inner { transform: translateY(0); }
-      .timeline-dot { transform: scale(1); }
-      .timeline-line-progress { transform: scaleY(1); }
+      .card, .btn, .btn .arrow { transition: none; }
+      .card:hover, .card:focus-within, .btn:hover .arrow { transform: none; }
     }
+
+    /* Placeholders you need to replace are marked with this dashed style */
+    .placeholder {
+      display: inline-block;
+      padding: 0 .35rem;
+      border: 1px dashed var(--olive);
+      background: rgba(184, 160, 106, .15);
+      font-style: italic;
+      word-break: break-word;
+    }
+
+    /* =========================================================
+       13. CONTACT
+       ========================================================= */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+      gap: clamp(2rem, 5vw, 3.5rem);
+    }
+    @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+
+    .contact-list { display: grid; margin: 0; align-content: start; border-top: 1px solid var(--olive); }
+    .contact-list div { padding-block: 1rem; border-bottom: 1px solid var(--rule); }
+    .contact-list dd { margin: .3rem 0 0; }
+
+    .form { display: grid; gap: 1.25rem; }
+    .field { display: grid; gap: .35rem; }
+    .field input,
+    .field textarea {
+      width: 100%;
+      font: inherit;
+      color: var(--ink);
+      background: var(--parchment);
+      border: 1px solid var(--rule);
+      border-bottom: 1px solid var(--olive);
+      padding: .7rem .8rem;
+      border-radius: 0;
+    }
+    .field textarea { min-height: 8rem; resize: vertical; }
+    .field input:focus-visible,
+    .field textarea:focus-visible { outline: 2px solid var(--olive); outline-offset: 1px; }
+    .form-note { padding: 1rem 1.1rem; border-left: 3px solid var(--olive); background: var(--parchment); font-style: italic; }
+    .form-note[hidden] { display: none; }
+
+    /* Sign-off in italic serif */
+    .signoff { display: grid; gap: .3rem; margin-top: clamp(1.5rem, 4vw, 2.5rem); }
+    .signoff .sig {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      color: var(--olive);
+      line-height: 1.1;
+    }
+    .signoff .sig-rule { width: 160px; height: 1px; background: var(--gold); border: 0; margin: .3rem 0 0; }
+
+    /* =========================================================
+       14. FOOTER (deep olive)
+       ========================================================= */
+    .footer {
+      background: linear-gradient(160deg, var(--olive) 0%, var(--olive-deep) 100%);
+      color: var(--cream);
+      border-top: 1px solid var(--gold);
+      padding-block: 2rem;
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer .label, .footer a { color: var(--cream); }
+    .footer a { text-decoration: none; border-bottom: 1px solid var(--gold); }
+    .footer a:hover { color: var(--gold-light); }
+    .footer :focus-visible { outline-color: var(--cream); }
   </style>
 </head>
-<body class="is-loading">
 
-  <!-- Skip Link -->
-  <a href="#main" class="skip-link">Skip to content</a>
+<body>
+  <!-- ========== LOADING SCREEN ========== -->
+  <!-- aria-hidden: it is decoration; screen readers go straight to the site. -->
+  <div class="loader" id="loader" aria-hidden="true">
 
-  <!-- Paper Grain Texture -->
-  <svg class="grain-overlay" aria-hidden="true">
-    <filter id="grain">
-      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
-    </filter>
-    <rect width="100%" height="100%" filter="url(#grain)"/>
-  </svg>
+    <div class="loader-inner">
+      <svg class="loader-mark" viewBox="0 0 300 190">
+        <defs>
+          <!-- Gold ink used to fill the letters -->
+          <linearGradient id="goldFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#EFE4C2"/>
+            <stop offset="1" stop-color="#B8A06A"/>
+          </linearGradient>
+          <!-- The bright band of the shimmer -->
+          <linearGradient id="shineGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#FFF8E2" stop-opacity="0"/>
+            <stop offset=".5" stop-color="#FFF8E2" stop-opacity=".9"/>
+            <stop offset="1" stop-color="#FFF8E2" stop-opacity="0"/>
+          </linearGradient>
+          <!-- Same letters again, used as a stencil for the shimmer -->
+          <clipPath id="sgClip">
+            <text x="104" y="142" text-anchor="middle" font-family="Great Vibes, cursive" font-size="150">S</text>
+            <text x="200" y="142" text-anchor="middle" font-family="Great Vibes, cursive" font-size="150">G</text>
+          </clipPath>
+        </defs>
 
-  <!-- Custom Cursor Follower -->
-  <div class="cursor-follower" aria-hidden="true"></div>
+        <text class="sg-letter sg-letter--s" x="104" y="142" text-anchor="middle">S</text>
+        <text class="sg-letter sg-letter--g" x="200" y="142" text-anchor="middle">G</text>
 
-  <!-- ============================================
-       PRELOADER
-       ============================================ -->
-  <div class="preloader" aria-hidden="true">
-    <svg class="preloader-sg" viewBox="0 0 180 110">
-      <text x="50%" y="78" text-anchor="middle">SG</text>
-    </svg>
+        <g clip-path="url(#sgClip)">
+          <rect class="shine-band" x="0" y="0" width="100" height="190" fill="url(#shineGrad)"/>
+        </g>
+      </svg>
+
+      <div class="loader-rule"></div>
+      <p class="loader-name">SHIVANSH GAUR</p>
+    </div>
+
+    <p class="loader-hint">Click, tap or press any key to enter</p>
   </div>
 
-  <!-- ============================================
-       NAVIGATION
-       ============================================ -->
-  <header>
-    <nav class="nav" aria-label="Main navigation">
-      <div class="nav-inner">
-        <a href="#hero" class="nav-logo" aria-label="Shivansh Gaur — home">
-          <svg viewBox="0 0 52 32" aria-hidden="true">
-            <text x="50%" y="24" text-anchor="middle" font-size="24" font-family="'Cormorant Garamond', Georgia, serif" font-weight="600">SG</text>
-          </svg>
-        </a>
-        <ul class="nav-links" role="list">
-          <li><a href="#about" class="nav-link" data-section="about">About</a></li>
-          <li><a href="#journey" class="nav-link" data-section="journey">Journey</a></li>
-          <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
-          <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
-          <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
-          <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
-        </ul>
-        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
+  <!-- Side rails in the empty margins (wide screens only) -->
+  <div class="side-rail side-rail--left" aria-hidden="true">
+    <span class="rail-caption">Nahan · Himachal Pradesh</span>
+    <div class="rail-line"><span class="rail-fill"></span></div>
+  </div>
+  <div class="side-rail side-rail--right" aria-hidden="true">
+    <div class="rail-line"><span class="rail-fill"></span></div>
+    <span class="rail-caption">Shivansh Gaur</span>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ========== NAVBAR ========== -->
+  <header class="nav">
+    <nav class="container nav-inner" aria-label="Main">
+      <a class="nav-brand" href="#top" aria-label="Shivansh Gaur, back to top">
+        <span class="mono" aria-hidden="true">SG</span>
+        <span class="name" aria-hidden="true">Shivansh Gaur</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
   </header>
 
-  <!-- Mobile Menu -->
-  <div class="mobile-overlay" aria-hidden="true"></div>
-  <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
-    <a href="#about" class="mobile-menu-link">About</a>
-    <a href="#journey" class="mobile-menu-link">Journey</a>
-    <a href="#skills" class="mobile-menu-link">Skills</a>
-    <a href="#projects" class="mobile-menu-link">Projects</a>
-    <a href="#experience" class="mobile-menu-link">Experience</a>
-    <a href="#contact" class="mobile-menu-link">Contact</a>
-  </nav>
-
-  <!-- ============================================
-       MAIN CONTENT
-       ============================================ -->
   <main id="main">
 
-    <!-- ==========================================
-         1. HERO
-         ========================================== -->
-    <section id="hero" class="section section--navy hero" aria-label="Introduction">
-      <!-- Parallax decorative SG -->
-      <svg class="hero-parallax" viewBox="0 0 400 200" width="600" height="300" aria-hidden="true">
-        <text x="200" y="160" text-anchor="middle">SG</text>
-      </svg>
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-text">
+            <p class="label">Portfolio · Nahan, Himachal Pradesh</p>
+            <h1 id="hero-title">Shivansh Gaur</h1>
+            <hr class="hero-rule">
+            <p class="hero-tagline">
+              A student at Newton School of Technology, a consultant at WorldQuant,
+              and a builder still learning the craft.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn--light" href="#projects">View my work <span class="arrow" aria-hidden="true">→</span></a>
+              <a class="hero-link" href="#contact">Get in touch</a>
+            </div>
+          </div>
 
-      <div class="hero-content container">
-        <h1 class="hero-heading">
-          <span class="hero-line"><span class="hero-line-inner">Shivansh</span></span>
-          <span class="hero-line"><span class="hero-line-inner">Gaur</span></span>
-        </h1>
-        <p class="hero-tagline" aria-label="Student · Python · Quant-Curious">
-          <span class="typewriter-text"></span><span class="cursor" aria-hidden="true"></span>
-        </p>
-      </div>
+          <!-- Heraldic shield crest with serif initials -->
+          <div class="hero-crest">
+            <svg viewBox="0 0 200 240" role="img" aria-label="Shield crest with the initials SG">
+              <path d="M16 16 H184 V118 C184 176 142 208 100 226 C58 208 16 176 16 118 Z"
+                    fill="rgba(37,46,28,.55)" stroke="#DCCB9C" stroke-width="1.2"/>
+              <path d="M26 26 H174 V118 C174 168 136 196 100 212 C64 196 26 168 26 118 Z"
+                    fill="none" stroke="#B8A06A" stroke-width=".7"/>
+              <line x1="26" y1="58" x2="174" y2="58" stroke="#B8A06A" stroke-width=".7"/>
+              <text x="100" y="47" text-anchor="middle" font-family="Libre Caslon Text, serif"
+                    font-size="10" font-weight="700" letter-spacing="3.5" fill="#DCCB9C">NAHAN</text>
+              <text x="100" y="142" text-anchor="middle" font-family="Libre Caslon Display, serif"
+                    font-size="66" fill="#F5F0E1">SG</text>
+              <line x1="76" y1="160" x2="124" y2="160" stroke="#B8A06A" stroke-width=".8"/>
+              <text x="100" y="180" text-anchor="middle" font-family="Libre Caslon Text, serif"
+                    font-size="8" font-weight="700" letter-spacing="3" fill="#DCCB9C">HIMACHAL</text>
+            </svg>
+          </div>
+        </div>
 
-      <div class="scroll-cue" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        <!-- Four quick facts -->
+        <dl class="facts">
+          <div><dt class="label">Studying</dt><dd>Newton School of Technology</dd></div>
+          <div><dt class="label">Position</dt><dd>Consultant, WorldQuant</dd></div>
+          <div><dt class="label">Learning</dt><dd>Python</dd></div>
+          <div><dt class="label">From</dt><dd>Nahan, Himachal Pradesh</dd></div>
+        </dl>
       </div>
     </section>
 
-    <!-- ==========================================
-         2. ABOUT
-         ========================================== -->
-    <section id="about" class="section section--cream" aria-labelledby="about-label">
-      <div class="container">
-        <h2 class="section-label reveal" id="about-label">01 — About</h2>
-        <p class="about-text reveal">
-          I'm Shivansh Gaur, a first-year student at Newton School of Technology from the quiet town of Nahan in Sirmaur, Himachal Pradesh. My academic path began at Carmel Convent Sr. Sec. School, where I completed Class 10, and continued at Career Academy, where I finished Class 12 in the Non-Medical stream. Today I'm deepening my programming foundations — learning Python at NST while building on the Java I studied during my school years. I recently joined WorldQuant as a Consultant, exploring the intersection of quantitative thinking and technology. I believe in honest, steady growth: learning one concept at a time.
-        </p>
-        <div class="brass-divider reveal"></div>
+    <!-- ========== I. ABOUT ========== -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container section-grid">
+        <header class="section-label">
+          <span class="section-num" aria-hidden="true">I</span>
+          <h2 id="about-title">About</h2>
+        </header>
+        <div class="section-body reveal">
+          <p class="lede">From the hills of Sirmaur to a first year at Newton School of Technology.</p>
+          <div class="prose">
+            <p>
+              Nahan, a small town in the Sirmaur district of Himachal Pradesh, is where I come
+              from. I finished Class 10 at Carmel Convent Senior Secondary School, then moved to
+              Career Academy for Class 12 in the Non-Medical stream.
+            </p>
+            <p>
+              My first real code was in Java, which I learned through Classes 9 and 10, working
+              up to object-oriented programming and sorting. In Class 11 I built a small number
+              guessing game, my first project of my own.
+            </p>
+            <p>
+              Today I am a first-year student at Newton School of Technology, where I am learning
+              Python, and I have recently become a consultant at WorldQuant. This page is where I
+              will keep a record of what I build next.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ==========================================
-         3. JOURNEY
-         ========================================== -->
-    <section id="journey" class="section section--navy" aria-labelledby="journey-label">
-      <div class="container">
-        <h2 class="section-label reveal" id="journey-label">02 — Journey</h2>
-        <div class="timeline" id="timeline">
-          <div class="timeline-line" aria-hidden="true">
-            <div class="timeline-line-progress" id="timeline-progress"></div>
-          </div>
+    <!-- ========== II. EDUCATION ========== -->
+    <section class="section" id="education" aria-labelledby="education-title">
+      <div class="container section-grid">
+        <header class="section-label">
+          <span class="section-num" aria-hidden="true">II</span>
+          <h2 id="education-title">Education</h2>
+        </header>
+        <div class="section-body reveal">
+          <table class="ledger">
+            <caption class="sr-only">Education, in order</caption>
+            <thead>
+              <tr class="label">
+                <th class="col-no" scope="col">No.</th>
+                <th scope="col">Institution</th>
+                <th scope="col">Notes</th>
+                <th class="col-std" scope="col">Standard</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="col-no">I</td>
+                <td class="col-inst">Carmel Convent Senior Secondary School</td>
+                <td class="col-note">Nahan</td>
+                <td class="col-std">Class X</td>
+              </tr>
+              <tr>
+                <td class="col-no">II</td>
+                <td class="col-inst">Career Academy</td>
+                <td class="col-note">Non-Medical stream</td>
+                <td class="col-std">Class XII</td>
+              </tr>
+              <tr class="is-current">
+                <td class="col-no">III</td>
+                <td class="col-inst">Newton School of Technology</td>
+                <td class="col-note">Learning Python</td>
+                <td class="col-std">First year <span class="tag">Present</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
 
-          <div class="timeline-item">
-            <div class="timeline-dot" aria-hidden="true"></div>
-            <div class="timeline-card reveal">
-              <h3 class="timeline-title">Class 10</h3>
-              <p class="timeline-institution">Carmel Convent Sr. Sec. School, Nahan</p>
-              <p class="timeline-desc">Completed foundational education. First exposure to programming with Java.</p>
-              <p class="timeline-date">[ADD: year]</p>
+    <!-- ========== III. EXPERIENCE ========== -->
+    <section class="section section--olive" id="experience" aria-labelledby="experience-title">
+      <div class="container section-grid">
+        <header class="section-label">
+          <span class="section-num" aria-hidden="true">III</span>
+          <h2 id="experience-title">Experience</h2>
+        </header>
+        <div class="section-body reveal">
+          <article class="record">
+            <h3 class="record-firm">WorldQuant</h3>
+            <dl class="record-list">
+              <div><dt class="label">Position</dt><dd>Consultant</dd></div>
+              <div><dt class="label">Status</dt><dd>Present</dd></div>
+              <div><dt class="label">Joined</dt><dd>Recently</dd></div>
+            </dl>
+            <p class="record-note">I have recently joined WorldQuant as a consultant.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== IV. SKILLS ========== -->
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="container section-grid">
+        <header class="section-label">
+          <span class="section-num" aria-hidden="true">IV</span>
+          <h2 id="skills-title">Skills</h2>
+        </header>
+        <div class="section-body reveal">
+          <div class="skill-rows">
+            <div class="skill-row">
+              <h3>Java</h3>
+              <ul class="badges">
+                <li class="badge">Object-oriented programming</li>
+                <li class="badge">Sorting algorithms</li>
+              </ul>
+              <p class="when">Classes IX–X</p>
             </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot" aria-hidden="true"></div>
-            <div class="timeline-card reveal">
-              <h3 class="timeline-title">Class 12 · Non-Medical</h3>
-              <p class="timeline-institution">Career Academy</p>
-              <p class="timeline-desc">Advanced studies in the Non-Medical stream. Built a Number Guessing Game.</p>
-              <p class="timeline-date">[ADD: year]</p>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot" aria-hidden="true"></div>
-            <div class="timeline-card reveal">
-              <h3 class="timeline-title">First Year</h3>
-              <p class="timeline-institution">Newton School of Technology</p>
-              <p class="timeline-desc">Currently pursuing technology studies. Learning Python, expanding programming foundations.</p>
-              <p class="timeline-date">[ADD: year] – Present</p>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot" aria-hidden="true"></div>
-            <div class="timeline-card reveal">
-              <h3 class="timeline-title">Consultant</h3>
-              <p class="timeline-institution">WorldQuant</p>
-              <p class="timeline-desc">Exploring quantitative strategies and analytical thinking.</p>
-              <p class="timeline-date">[ADD: date] – Present</p>
+            <div class="skill-row">
+              <h3>Python</h3>
+              <ul class="badges">
+                <li class="badge badge--progress">In progress</li>
+              </ul>
+              <p class="when">Newton School of Technology</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==========================================
-         4. SKILLS
-         ========================================== -->
-    <section id="skills" class="section section--cream" aria-labelledby="skills-label">
-      <div class="container">
-        <h2 class="section-label reveal" id="skills-label">03 — Skills</h2>
-        <div class="skills-grid reveal-children reveal">
-          <article class="skill-card">
-            <h3 class="skill-card-title">Python</h3>
-            <p class="skill-card-status">Currently Learning</p>
-            <p class="skill-card-desc">Building proficiency through coursework at Newton School of Technology. Exploring fundamentals, data structures, and problem-solving.</p>
-          </article>
-          <article class="skill-card">
-            <h3 class="skill-card-title">Java</h3>
-            <p class="skill-card-status">Foundational</p>
-            <p class="skill-card-desc">Core concepts including Object-Oriented Programming and sorting algorithms, studied during Class 9–10 at Carmel Convent Sr. Sec. School.</p>
-          </article>
+    <!-- ========== V. PROJECTS ========== -->
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="container section-grid">
+        <header class="section-label">
+          <span class="section-num" aria-hidden="true">V</span>
+          <h2 id="projects-title">Projects</h2>
+        </header>
+        <div class="section-body reveal">
+          <div class="projects-grid">
+            <article class="card">
+              <p class="label">No. I · Class XI</p>
+              <h3>Number Guessing Game</h3>
+              <p>A small game where the player guesses a hidden number. My first project of my own.</p>
+              <!-- PLACEHOLDER: replace "#" and the text with your repository link -->
+              <p><a href="#" class="placeholder">Add project link here</a></p>
+            </article>
+            <article class="card card--soon">
+              <p class="label">No. II</p>
+              <h3>More coming soon</h3>
+              <p>New projects will be added here as I build them.</p>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ==========================================
-         5. PROJECTS
-         ========================================== -->
-    <section id="projects" class="section section--navy" aria-labelledby="projects-label">
-      <div class="container">
-        <h2 class="section-label reveal" id="projects-label">04 — Projects</h2>
-        <div class="projects-grid reveal-children reveal">
-          <article class="project-card">
-            <h3 class="project-card-title">Number Guessing Game</h3>
-            <p class="project-card-desc">A console-based game built during Class 11 that generates a random number and challenges the user to guess it with hints. An exercise in logic, loops, and user interaction.</p>
-            <a href="[ADD: GitHub link]" class="project-card-link" target="_blank" rel="noopener noreferrer">
-              View on GitHub
-              <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-            </a>
-          </article>
-          <article class="project-card project-card--placeholder">
-            <h3 class="project-card-title">Coming Soon</h3>
-            <p class="project-card-desc">More projects on the way.</p>
-          </article>
-          <article class="project-card project-card--placeholder">
-            <h3 class="project-card-title">Coming Soon</h3>
-            <p class="project-card-desc">More projects on the way.</p>
-          </article>
+    <!-- ========== VI. CONTACT ========== -->
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="container section-grid">
+        <header class="section-label">
+          <span class="section-num" aria-hidden="true">VI</span>
+          <h2 id="contact-title">Contact</h2>
+        </header>
+        <div class="section-body reveal">
+          <p class="lede">Correspondence is always welcome.</p>
+          <div class="contact-grid">
+            <!-- PLACEHOLDERS: replace the three links below with your real details.
+                 Change both the href="..." and the visible text. -->
+            <dl class="contact-list">
+              <div>
+                <dt class="label">Email</dt>
+                <dd><a href="mailto:your.email@example.com" class="placeholder">your.email@example.com</a></dd>
+              </div>
+              <div>
+                <dt class="label">GitHub</dt>
+                <dd><a href="https://github.com/your-username" class="placeholder">github.com/your-username</a></dd>
+              </div>
+              <div>
+                <dt class="label">LinkedIn</dt>
+                <dd><a href="https://www.linkedin.com/in/your-profile" class="placeholder">linkedin.com/in/your-profile</a></dd>
+              </div>
+            </dl>
+
+            <form class="form" id="contact-form" novalidate>
+              <div class="field">
+                <label class="label" for="cf-name">Your name</label>
+                <input id="cf-name" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label class="label" for="cf-email">Your email</label>
+                <input id="cf-email" name="email" type="email" autocomplete="email" required>
+              </div>
+              <div class="field">
+                <label class="label" for="cf-message">Message</label>
+                <textarea id="cf-message" name="message" required></textarea>
+              </div>
+              <div>
+                <button class="btn" type="submit">Send note <span class="arrow" aria-hidden="true">→</span></button>
+              </div>
+              <!-- Confirmation appears here; role="status" announces it to screen readers -->
+              <p class="form-note" id="form-note" role="status" hidden></p>
+            </form>
+          </div>
+
+          <div class="signoff">
+            <p class="label">Yours sincerely</p>
+            <p class="sig">Shivansh Gaur</p>
+            <hr class="sig-rule">
+          </div>
         </div>
       </div>
     </section>
-
-    <!-- ==========================================
-         6. EXPERIENCE
-         ========================================== -->
-    <section id="experience" class="section section--cream section--cream-to-deep" aria-labelledby="experience-label">
-      <div class="container">
-        <h2 class="section-label reveal" id="experience-label">05 — Experience</h2>
-        <article class="experience-card reveal">
-          <h3 class="experience-title">Consultant</h3>
-          <p class="experience-org">WorldQuant</p>
-          <p class="experience-date">[ADD: start date] – Present</p>
-          <p class="experience-desc">Contributing as a Consultant, working with quantitative models and analytical frameworks.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         7. CONTACT
-         ========================================== -->
-    <section id="contact" class="section section--navy section--contact" aria-labelledby="contact-label">
-      <div class="container">
-        <h2 class="section-label reveal" id="contact-label">06 — Contact</h2>
-        <h3 class="contact-heading reveal">Let's Connect</h3>
-        <p class="contact-text reveal">I'm always open to conversations about technology, quantitative thinking, or collaboration opportunities.</p>
-        <a href="mailto:[ADD: email]" class="contact-btn reveal">
-          <span>[ADD: email]</span>
-        </a>
-        <div class="social-links reveal">
-          <!-- GitHub -->
-          <a href="[ADD: URL]" class="social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          </a>
-          <!-- LinkedIn -->
-          <a href="[ADD: URL]" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </a>
-          <!-- Twitter/X -->
-          <a href="[ADD: URL]" class="social-link" aria-label="Twitter / X" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
   </main>
 
-  <!-- ============================================
-       FOOTER
-       ============================================ -->
+  <!-- ========== FOOTER ========== -->
   <footer class="footer">
-    <div class="container">
-      <p>&copy; 2026 Shivansh Gaur</p>
+    <div class="container footer-inner">
+      <p class="label">Shivansh Gaur · Nahan, Himachal Pradesh · <span id="year-roman">MMXXVI</span></p>
+      <p class="label"><a href="#top">Back to top</a></p>
     </div>
   </footer>
 
   <script>
-    /* ============================================
-       DOM REFERENCES
-       ============================================ */
-    const body = document.body;
-    const preloader = document.querySelector('.preloader');
-    const nav = document.querySelector('.nav');
-    const hamburger = document.querySelector('.hamburger');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const mobileOverlay = document.querySelector('.mobile-overlay');
-    const mobileLinks = document.querySelectorAll('.mobile-menu-link');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const heroLines = document.querySelectorAll('.hero-line-inner');
-    const typewriterEl = document.querySelector('.typewriter-text');
-    const heroParallax = document.querySelector('.hero-parallax');
-    const timelineProgress = document.getElementById('timeline-progress');
-    const timelineSection = document.getElementById('timeline');
-    const timelineDots = document.querySelectorAll('.timeline-dot');
-    const cursorFollower = document.querySelector('.cursor-follower');
-    const sections = document.querySelectorAll('.section[id]');
+    /* ---------------------------------------------------------
+       LOADER: stays until the visitor clicks, taps or presses a key,
+       then lifts like a curtain and is removed from the page.
+       --------------------------------------------------------- */
+    (function () {
+      var loader = document.getElementById('loader');
+      if (!loader) return;
+      document.documentElement.classList.add('is-loading');
 
-    /* ============================================
-       UTILITIES
-       ============================================ */
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isPointerFine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-    /* ============================================
-       PRELOADER
-       ============================================ */
-    function initPreloader() {
-      function unlockScroll() {
-        body.classList.remove('is-loading');
-        body.style.overflow = 'visible';
-        body.style.overflowY = 'auto';
-        document.documentElement.style.overflow = 'visible';
-        document.documentElement.style.overflowY = 'auto';
+      function removeLoader() {
+        if (loader.parentNode) loader.parentNode.removeChild(loader);
+        document.documentElement.classList.remove('is-loading');
+        document.removeEventListener('keydown', skip);
+      }
+      function skip() {
+        if (loader.classList.contains('is-skipped')) return;
+        loader.classList.add('is-skipped');
+        setTimeout(removeLoader, 700);
       }
 
-      if (prefersReducedMotion) {
-        preloader.classList.add('is-done');
-        preloader.style.display = 'none';
-        unlockScroll();
-        onPreloaderDone();
-        return;
+      loader.addEventListener('click', skip);
+      document.addEventListener('keydown', skip);
+    })();
+
+    /* ---------------------------------------------------------
+       MOBILE MENU: open/close, and close after choosing a link
+       --------------------------------------------------------- */
+    (function () {
+      var toggle = document.querySelector('.nav-toggle');
+      var links = document.getElementById('nav-links');
+      if (!toggle || !links) return;
+
+      function setOpen(open) {
+        links.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        toggle.textContent = open ? 'Close' : 'Menu';
       }
-
-      setTimeout(() => {
-        preloader.classList.add('is-done');
-        unlockScroll();
-        setTimeout(onPreloaderDone, 300);
-      }, 2000);
-
-      /* Fallback safeguard: guarantees scrollable under any circumstances */
-      setTimeout(unlockScroll, 2800);
-    }
-
-    function onPreloaderDone() {
-      triggerHeroAnimations();
-    }
-
-    /* ============================================
-       HERO ANIMATIONS
-       ============================================ */
-    function triggerHeroAnimations() {
-      heroLines.forEach((line, i) => {
-        setTimeout(() => {
-          line.classList.add('is-visible');
-        }, i * 150);
+      toggle.addEventListener('click', function () {
+        setOpen(!links.classList.contains('is-open'));
       });
+      links.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') setOpen(false);
+      });
+    })();
 
-      /* Start typewriter after heading reveals */
-      setTimeout(() => {
-        typewrite('Student · Python · Quant-Curious', 0);
-      }, heroLines.length * 150 + 500);
-    }
+    /* ---------------------------------------------------------
+       CONTACT FORM: no real sending, just a polite confirmation
+       --------------------------------------------------------- */
+    (function () {
+      var form = document.getElementById('contact-form');
+      var note = document.getElementById('form-note');
+      if (!form || !note) return;
 
-    function typewrite(text, index) {
-      if (prefersReducedMotion) {
-        typewriterEl.textContent = text;
-        return;
-      }
-      if (index <= text.length) {
-        typewriterEl.textContent = text.slice(0, index);
-        setTimeout(() => typewrite(text, index + 1), 60);
-      }
-    }
+      form.addEventListener('submit', function (e) {
+        e.preventDefault(); // stop the browser from trying to submit anywhere
 
-    /* ============================================
-       NAVIGATION — SCROLL BEHAVIOUR
-       ============================================ */
-    let lastScroll = 0;
-    function handleNavScroll() {
-      const scrollY = window.scrollY;
-      if (scrollY > 100) {
-        nav.classList.add('nav-scrolled');
-      } else {
-        nav.classList.remove('nav-scrolled');
-      }
-      lastScroll = scrollY;
-    }
-
-    /* ============================================
-       NAVIGATION — ACTIVE SECTION HIGHLIGHT
-       ============================================ */
-    function initActiveSectionObserver() {
-      const options = {
-        rootMargin: '-40% 0px -55% 0px',
-        threshold: 0
-      };
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            navLinks.forEach(link => {
-              link.classList.toggle('is-active', link.getAttribute('data-section') === id);
-              if (link.getAttribute('data-section') === id) {
-                link.setAttribute('aria-current', 'true');
-              } else {
-                link.removeAttribute('aria-current');
-              }
-            });
-          }
-        });
-      }, options);
-
-      sections.forEach(section => observer.observe(section));
-    }
-
-    /* ============================================
-       HAMBURGER / MOBILE MENU
-       ============================================ */
-    function toggleMenu() {
-      const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
-      hamburger.setAttribute('aria-expanded', !isOpen);
-      mobileMenu.classList.toggle('is-open');
-      mobileOverlay.classList.toggle('is-open');
-      mobileMenu.setAttribute('aria-hidden', isOpen);
-      body.classList.toggle('menu-open');
-    }
-
-    function closeMenu() {
-      hamburger.setAttribute('aria-expanded', 'false');
-      mobileMenu.classList.remove('is-open');
-      mobileOverlay.classList.remove('is-open');
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      body.classList.remove('menu-open');
-    }
-
-    hamburger.addEventListener('click', toggleMenu);
-    mobileOverlay.addEventListener('click', closeMenu);
-    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
-
-    /* ============================================
-       SCROLL REVEAL (IntersectionObserver)
-       ============================================ */
-    function initScrollReveal() {
-      const reveals = document.querySelectorAll('.reveal');
-      if (prefersReducedMotion) {
-        reveals.forEach(el => el.classList.add('revealed'));
-        return;
-      }
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-
-      reveals.forEach(el => observer.observe(el));
-    }
-
-    /* ============================================
-       TIMELINE DRAW (Scroll-driven)
-       ============================================ */
-    function initTimelineDraw() {
-      if (prefersReducedMotion) return;
-
-      /* Dot reveal via IntersectionObserver */
-      const dotObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            dotObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.5 });
-
-      timelineDots.forEach(dot => dotObserver.observe(dot));
-
-      /* Line progress on scroll */
-      function updateTimeline() {
-        if (!timelineSection) return;
-        const rect = timelineSection.getBoundingClientRect();
-        const viewH = window.innerHeight;
-        const sectionTop = rect.top;
-        const sectionHeight = rect.height;
-
-        /* How far we've scrolled into the timeline section */
-        const scrolledInto = viewH - sectionTop;
-        const progress = Math.min(Math.max(scrolledInto / (sectionHeight + viewH * 0.3), 0), 1);
-        timelineProgress.style.transform = `scaleY(${progress})`;
-
-        requestAnimationFrame(updateTimeline);
-      }
-      requestAnimationFrame(updateTimeline);
-    }
-
-    /* ============================================
-       HERO PARALLAX
-       ============================================ */
-    function initParallax() {
-      if (prefersReducedMotion || !heroParallax) return;
-
-      function updateParallax() {
-        const scrollY = window.scrollY;
-        const heroHeight = window.innerHeight;
-        if (scrollY < heroHeight * 1.5) {
-          heroParallax.style.transform = `translate(-50%, calc(-50% + ${scrollY * 0.3}px))`;
+        if (!form.checkValidity()) {
+          note.textContent = 'Please fill in your name, a valid email and a message.';
+          note.hidden = false;
+          var firstInvalid = form.querySelector(':invalid');
+          if (firstInvalid) firstInvalid.focus();
+          return;
         }
-        requestAnimationFrame(updateParallax);
-      }
-      requestAnimationFrame(updateParallax);
-    }
 
-    /* ============================================
-       CUSTOM CURSOR FOLLOWER
-       ============================================ */
-    function initCursorFollower() {
-      if (!isPointerFine || prefersReducedMotion) return;
-
-      cursorFollower.classList.add('is-active');
-
-      let mouseX = -100, mouseY = -100;
-      let curX = -100, curY = -100;
-
-      document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
+        var name = form.elements.name.value.trim();
+        note.textContent = 'Thank you, ' + name + '. Your note has been kept on this page, ' +
+          'but this form is not connected to email yet, so please also write to me ' +
+          'at the address listed here.';
+        note.hidden = false;
+        form.reset();
       });
+    })();
 
-      /* Detect hoverable elements */
-      const hoverTargets = 'a, button, .project-card, .skill-card, .experience-card';
-      document.addEventListener('mouseover', (e) => {
-        if (e.target.closest(hoverTargets)) {
-          cursorFollower.classList.add('is-hovering');
-        }
-      });
-      document.addEventListener('mouseout', (e) => {
-        if (e.target.closest(hoverTargets)) {
-          cursorFollower.classList.remove('is-hovering');
-        }
-      });
-
-      function animateCursor() {
-        curX += (mouseX - curX) * 0.15;
-        curY += (mouseY - curY) * 0.15;
-        cursorFollower.style.left = curX + 'px';
-        cursorFollower.style.top = curY + 'px';
-        requestAnimationFrame(animateCursor);
-      }
-      requestAnimationFrame(animateCursor);
-    }
-
-    /* ============================================
-       NAV SCROLL LISTENER (throttled via rAF)
-       ============================================ */
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          handleNavScroll();
-          ticking = false;
+    /* ---------------------------------------------------------
+       FOOTER YEAR in Roman numerals (keeps itself up to date)
+       --------------------------------------------------------- */
+    (function () {
+      function toRoman(n) {
+        var map = [[1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],[100,'C'],[90,'XC'],
+                   [50,'L'],[40,'XL'],[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']];
+        var out = '';
+        map.forEach(function (pair) {
+          while (n >= pair[0]) { out += pair[1]; n -= pair[0]; }
         });
-        ticking = true;
+        return out;
       }
-    }, { passive: true });
-
-    /* ============================================
-       INIT
-       ============================================ */
-    document.addEventListener('DOMContentLoaded', () => {
-      initPreloader();
-      initScrollReveal();
-      initActiveSectionObserver();
-      initTimelineDraw();
-      initParallax();
-      initCursorFollower();
-    });
+      var el = document.getElementById('year-roman');
+      if (el) el.textContent = toRoman(new Date().getFullYear());
+    })();
   </script>
 </body>
 </html>
